@@ -127,3 +127,20 @@ ul li .delete {
 ul li .delete:hover {
   background: #a30404;
 }
+
+.schedule {
+  position: absolute;
+  right: 132px;
+  padding: 10px 10px;
+  /* Adjust position */
+  top: 5px;
+  background: #f1c40f;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.schedule:hover {
+  background: #d4ac0d;
+}
