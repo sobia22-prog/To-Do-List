@@ -3,7 +3,7 @@ const listContainer = document.getElementById("list-container");
 
 function addTask() {
   if (inputBox.value.trim() === '') {
-    alert("You must write something!");
+    alert("Write something to add task!");
     return;
   }
 

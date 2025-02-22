@@ -94,10 +94,17 @@ button {
 ul li {
   position: relative;
   list-style: none;
-  font-size: 17px;
+  font-size: 15px;
   padding: 18px 8px 12px 50px;
   user-select: none;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #f4f4f4;
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 ul li::before {
