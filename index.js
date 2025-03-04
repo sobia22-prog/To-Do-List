@@ -3,7 +3,7 @@ const listContainer = document.getElementById("list-container");
 
 function addTask() {
   if (inputBox.value.trim() === '') {
-    alert("Write something to add task!");
+    alert("Write something to add a task!");
     return;
   }
 
@@ -60,6 +60,9 @@ function filterTasks() {
 
 function saveData() {
   localStorage.setItem("data", listContainer.innerHTML);
+  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({ action: "refreshUI" });
+  }
 }
 
 function showTask() {
@@ -84,3 +87,25 @@ function showTask() {
 
 showTask();
 
+if ('Notification' in window && navigator.serviceWorker) {
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      navigator.serviceWorker.ready.then(registration => {
+        registration.showNotification("Welcome to the To-Do List PWA!");
+      });
+    }
+  });
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js").then(reg => {
+    console.log("Service Worker Registered");
+  });
+
+  navigator.serviceWorker.addEventListener("message", event => {
+    if (event.data.action === "refreshUI") {
+      console.log("Updating UI...");
+      showTask();
+    }
+  });
+}
